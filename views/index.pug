@@ -1,0 +1,29 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title My Chat App
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
+        link(rel="stylesheet", href="/css/main.css")
+        link(rel="stylesheet", href="/css/index.css")
+        script(src="/scripts/registro.js")
+    body
+        #welcome(class="full-height full width")
+            form#registro-form(action="http://localhost:3000/chat", method="POST")
+                h1(class="center") Bienvenido!
+                p(class="center lighter") Ingresa tus datos, por favor:
+                input#username(class="full-width", type="text", name="username", placeholder="Tu usuario aquí...", required=true)
+                div
+                    input#male(type="radio", name="sex", value="Male", checked=true)
+                    label(class="lighter", for="male") Hombre
+                    input#female(type="radio", name="sex", value="Female")
+                    label(class="lighter", for="female") Mujer
+
+                if !validated
+                    #registro-warning.titilando
+                        i#warning-icon.fa.fa-warning
+                        small.lighter El usuario ingresado ya existe =(
+
+                button#send-form Ingresar
