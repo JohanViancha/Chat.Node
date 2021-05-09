@@ -35,4 +35,5 @@ function newMessage(socket){
         socket.emit('updateMessages', data);
         socket.broadcast.emit('updateMessages', data);
     })
+
 }

@@ -4,6 +4,8 @@ $(document).ready(function(){
     updateUsers(socket);
     newMessage(socket);
     updateMessages(socket);
+
+ 
 });
 
 // obtenemos el nombre de usuario registrado en localStorage
@@ -26,8 +28,10 @@ function updateUsers(socket){
         }
     })
 }
-
+ 
 function newMessage(socket){
+
+    
     $('#message').keydown(function(e){
         if(e.keyCode == 13){
             // prevenimos evento por defecto que es dar salto de linea
@@ -36,34 +40,58 @@ function newMessage(socket){
         }
     });
     $('#send-msg-form').submit(function(e){
+
         // prevenimos evento por defecto que es enviar el formulario
         e.preventDefault();
         socket.emit('newMessage', {
             username: localStorage.username,
-            genero: localStorage.genero,
+            color: localStorage.color,
             message: $('#message').val()
         });
-        document.querySelector('#send-msg-form').reset();
+        document.querySelector('#send-msg-form').reset();        
+
+        
     });
+    
+ 
 }
+
+
+
+
+
 
 function updateMessages(socket){
     socket.on('updateMessages', function(data){
         let html = '';
         if(data.username == localStorage.username){
-            html += '<div class="my-msg full-width flex">';
-            if(data.genero == 'Male') html += '<div class="my-style-m message"><h4> Tú </h4>';
-            else html += '<div class="my-style-f message"><h4> Tú </h4>';
-            html += '<p class="lighter">' + data.message + '</p>';
-            html += '</div></div>';
+            html += '<div class="card w-50 mb-2 my-msg">';
+            html += '<div class="card-header" style="background:#00fff3"> Tú </div>';
+            html += '<div class="card-body"><p class="card-text">' + data.message + '</p></div>';
+            html += '</div>';
         }else{
-            html += '<div class="full-width flex">';
-            if(data.genero == 'Male') html += '<div class="blue message"><h4> ' + data.username + ' </h4>';
-            else html += '<div class="pink message"><h4> ' + data.username + ' </h4>';
-            html += '<p class="lighter">' + data.message + '</p>';
-            html += '</div></div>';
+            html += '<div class="card w-50 mb-2 your-msg">';
+            html += '<div class="card-header" style="background:'+data.color+'">' + data.username + ' </div>';
+            html += '<div class="card-body"><p class="card-text">' + data.message + '</p></div>';
+            html += '</div>';
         }
         $('#msg-list').append(html);
-        $("#msg-list").animate({ scrollTop: $('#msg-list').prop("scrollHeight")}, 1000);
+        $("#messages").scrollTop($('#messages').prop("scrollHeight"));
     });
+
+   
 }
+
+
+$(window).resize(function(){
+    if($(window).width()<=900){
+        $("#user-list").hide();
+        $("#messages").addClass("col-12");
+    }
+    if($(window).width()>900){
+        $("#user-list").show();
+        $("#messages").removeClass("col-12");
+        $("#messages").addClass("col-8");
+
+    }
+});
