@@ -30,7 +30,6 @@ app.set('view engine', 'pug');
 
 require('./app/sockets')(io);
 
-const port = process.env.PORT || 3000;
-server.listen(port, ()=>{
+server.listen((process.env.PORT || 3000), ()=>{
     console.log("Servidor escuchando puerto");
 });
