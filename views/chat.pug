@@ -14,14 +14,24 @@ html(lang="es")
         script(src="/scripts/bootstrap.min.js")
         script(src="/scripts/chat.js")
     body 
-        #container.p-5
+
+
+        nav.navbar.navbar-light.bg-light
+           .container-fluid
+            img.d-inline-block.align-text-top(src="images/logo.png" width="40" height="40")
+            h2.text-dark Chat con Node.js y Socket.io
+            div.text-center
+                img.mx-3(src="images/node.png" width="80" height="40")
+                img(src="images/socketio.png" width="40" height="40")
+        #container.px-5.py-3
             #chat-area.row.m-0.container-fluid-md.border.rounded-3.p-3
                 #messages.container.col-8.border.rounded-3.p-2
                     #msg-list.full-width
                 #user-list.container.col-3.border.rounded-3.p-3
                     .full-width.full-height
-                        h3 Usuarios en linea
-                        #users
+                        h4 Usuarios en linea
+                        #users.list-group
+                            
             form#send-msg-form
                 .input-group.mt-3
                     textarea#message.form-control.lighter(name="message", placeholder="Escribe aquí tu mensaje")

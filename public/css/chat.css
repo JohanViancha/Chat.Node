@@ -1,5 +1,5 @@
 #container{
-    height: 90%;
+    height: 80%;
 }
 
 /* Chat area */
@@ -75,3 +75,15 @@
     }
 
   }
+
+
+  .my-msg{
+      float: right;
+      margin-left: 100%;
+  }
+
+  .your-msg{
+      float: left;
+      margin-right: 100%;
+  }
+

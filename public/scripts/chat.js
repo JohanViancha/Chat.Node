@@ -16,15 +16,16 @@ function username(socket){
 }
 
 function updateUsers(socket){
+    
     socket.on('updateUsers', function(data){
-        $('#users').html('');
+        $("#users").html('');
+        
         for(var i = 0; i < data.users.length; i++){
             let html = '';
-            html += '<div class="user">';
-            html += '<i class="fa fa-circle online-icon"></i>';
-            html += data.users[i];
-            html += '</div>';
-            $('#users').append(html);
+            console.log(data.users);
+            html += '<li class="list-group-item user">';
+            html += '<i class="me-2 fa fa-circle text-success"></i>'+data.users[i];+'</li>';
+            $('#users').append(html);      
         }
     })
 }
