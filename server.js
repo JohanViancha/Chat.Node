@@ -6,7 +6,7 @@ const express = require('express');
 const app = express();
 
 // creamos servidor http con la instancia de express
-const server = require('https').Server(app);
+const server = require('http').Server(app);
 
 // importamos socket.io
 const io = require('socket.io')(server);
