@@ -4,7 +4,7 @@ $(document).ready(function(){
     updateUsers(socket);
     newMessage(socket);
     updateMessages(socket);
-
+    verificaAncho();
  
 });
 
@@ -85,6 +85,10 @@ function updateMessages(socket){
 
 
 $(window).resize(function(){
+    verificaAncho();
+});
+
+function verificaAncho(){
     if($(window).width()<=900){
         $("#user-list").hide();
         $("#messages").addClass("col-12");
@@ -95,4 +99,4 @@ $(window).resize(function(){
         $("#messages").addClass("col-8");
 
     }
-});
+}
