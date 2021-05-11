@@ -1,11 +1,11 @@
 $(document).ready(function(){
-    var socket = io('https://chatgrupal.herokuapp.com/');
+    var socket = io('http://localhost:3000');
     username(socket);
     updateUsers(socket);
     newMessage(socket);
     updateMessages(socket);
+
     verificaAncho();
- 
 });
 
 // obtenemos el nombre de usuario registrado en localStorage
@@ -85,7 +85,7 @@ function updateMessages(socket){
 
 
 $(window).resize(function(){
-    verificaAncho();
+  verificaAncho();
 });
 
 function verificaAncho(){

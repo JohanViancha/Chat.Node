@@ -4,6 +4,10 @@ function index(req, res){
     res.render('index', {validated: true});
 }
 
+function mantenimiento(req,res){
+    res.render('mantenimiento');
+}
+
 function redirect(req, res){
     if(req.validate) return res.render('chat');
     return res.render('index', {validated: false});
@@ -15,4 +19,4 @@ function validate(req, res, next){
     next();
 }
 
-module.exports = {index, validate, redirect}
+module.exports = {index,mantenimiento, validate, redirect}
