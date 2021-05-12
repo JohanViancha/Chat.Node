@@ -1,5 +1,6 @@
 #container{
     height: 80%;
+    padding: 10px;
 }
 
 /* Chat area */
@@ -7,15 +8,22 @@
     height: 90%;
 }
 
+#escribir{
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
 
 #messages{
+    position:relative;
     background: #fff;
     border: 1px solid #999;
     border-radius: 20px 0px 0px 0px;
     display: flex;
     flex: 3;
     padding: 20px;
-    overflow: scroll;
+    overflow-y: scroll;
     max-height: 100%;
 }
 /*

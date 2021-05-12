@@ -1,9 +1,11 @@
 $(document).ready(function(){
-    var socket = io('https://chatgrupal.herokuapp.com/');
+  //  var socket = io('https://chatgrupal.herokuapp.com/');
+    var socket = io('http://localhost:3000/');
     username(socket);
     updateUsers(socket);
     newMessage(socket);
     updateMessages(socket);
+    writeword(socket);
 
     verificaAncho();
 });
@@ -22,7 +24,6 @@ function updateUsers(socket){
         
         for(var i = 0; i < data.users.length; i++){
             let html = '';
-            console.log(data.users);
             html += '<li class="list-group-item user">';
             html += '<i class="me-2 fa fa-circle text-success"></i>'+data.users[i];+'</li>';
             $('#users').append(html);      
@@ -31,7 +32,16 @@ function updateUsers(socket){
 }
  
 function newMessage(socket){
+    
 
+    $("#message").keydown(function (e) { 
+        console.log($("#message").val().length);
+        if($("#message").val().length ==2){
+            socket.emit('writeword', {usuario:localStorage.username,estado:1});
+        }else if($("#message").val().length <=1){
+            socket.emit('writeword', {usuario:localStorage.username,estado:2});
+        }   
+    });
     
     $('#message').keydown(function(e){
         if(e.keyCode == 13){
@@ -49,8 +59,8 @@ function newMessage(socket){
             color: localStorage.color,
             message: $('#message').val()
         });
+         socket.emit('writeword', {usuario:localStorage.username,estado:2});
         document.querySelector('#send-msg-form').reset();        
-
         
     });
     
@@ -59,7 +69,28 @@ function newMessage(socket){
 
 
 
+function writeword(socket){ 
+   
 
+    socket.on('writeword', function(data){
+
+        
+        if(data.estado == 1){
+            if(data.usuario != localStorage.username){
+                console.log(data.usuario + " escribio");
+                $("#container #escribir").append(`<p class="p-write">${data.usuario} está escribiendo</p>`);
+                    
+            }
+        }else  if(data.estado == 2){
+            if(data.usuario != localStorage.username){
+                $("#container #escribir p").remove();
+            }
+        }
+ 
+        
+    });
+
+ }
 
 
 function updateMessages(socket){
@@ -75,6 +106,7 @@ function updateMessages(socket){
             html += '<div class="card-header" style="background:'+data.color+'">' + data.username + ' </div>';
             html += '<div class="card-body"><p class="card-text">' + data.message + '</p></div>';
             html += '</div>';
+            $("#audio")[0].play();
         }
         $('#msg-list').append(html);
         $("#messages").scrollTop($('#messages').prop("scrollHeight"));

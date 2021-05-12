@@ -5,6 +5,7 @@ module.exports = function(io){
         addUser(socket);
         disconnectUser(socket);
         newMessage(socket);
+        writeword(socket);
     });
 }
 
@@ -35,5 +36,13 @@ function newMessage(socket){
         socket.emit('updateMessages', data);
         socket.broadcast.emit('updateMessages', data);
     })
-
 }
+
+
+function writeword(socket){
+    socket.on('writeword', function(data){
+    socket.emit('writeword', data);
+    socket.broadcast.emit('writeword', data);
+    });
+}
+

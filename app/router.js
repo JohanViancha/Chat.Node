@@ -6,6 +6,6 @@ const Router = express.Router();
 
 Router.get('/', controllers.index);
 Router.get('/mantenimiento', controllers.mantenimiento);
-Router .post('/chat', controllers.validate, controllers.redirect);
+Router.post('/chat', controllers.validate, controllers.redirect);
 
 module.exports = Router;

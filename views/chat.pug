@@ -29,10 +29,14 @@ html(lang="es")
                 #messages.container.col-sm-12.col-lg-8.border.rounded-3.p-2
                     #msg-list.full-width
                 #user-list.container.col-sm-12.col-lg-3.border.rounded-3.p-3
+                    
                     .full-width.full-height
                         h4 Usuarios en linea
                         #users.list-group
-                            
+            
+            audio(id="audio" src="audio/notificacion.mp3")
+            div#escribir    
+                span  
             form#send-msg-form
                 .input-group.mt-3
                     textarea#message.form-control.lighter(name="message", placeholder="Escribe aquí tu mensaje")

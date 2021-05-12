@@ -4,24 +4,17 @@ window.onload = function(){
         .addEventListener('click', function(e){
 
             localStorage.username = document.querySelector('#username').value;
-            localStorage.color = getRandomColor();
+            localStorage.color = newColor();
         })
 
      
 }
 
-var colores=[];
 
-function getRandomColor() {
-    var num=(Math.floor(Math.random()*4)*4).toString(16);
-    var letters = ['0','F',num];
-    var color = '#';
+function newColor() {
+    const hBase = Math.random();
+    const newH = Math.floor(hBase * 360);
+    const newL = Math.floor(Math.random() * 16) + 75;
     
-    for (var i = 0; i < 3; i++ ) {
-        let pos=Math.floor(Math.random() * letters.length);
-        color += letters[pos];
-        letters.splice(pos,1);
-    }
-
-    return color;
-}
+    return `hsl(${newH}, 100%, ${newL}%)
+    ` }
