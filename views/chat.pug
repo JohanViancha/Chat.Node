@@ -25,12 +25,18 @@ html(lang="es")
 
         audio(id="audio" src="/audio/notificacion.mp3") 
         audio(id="tipiear" src="/audio/tipiear.mp3") 
-        nav.navbar.navbar-light.bg-light
-           .container-fluid
+        nav.navbar.navbar-light.bg-light.container-fluid
             #img.m-auto
+                a.bt-menu(href="#")
+                    i.fas.fa-paper-plane 
                 img.mx-3.mb-2(src="images/node.png" width="80" height="40")
                 img.mx-3.mb-2(src="images/socketio.png" width="40" height="40")
             h2.text-dark.m-auto Chat con Node.js y Socket.io
+        //header
+              a.btn_menu(href="#")
+                    span.icon-list2 Menu
+            nav
+                ul#users
         #container
             #chat-area.row.m-0.container-fluid-md.border.rounded-3.p-3
                 #messages.container.col-sm-12.col-lg-8.border.rounded-3.p-2

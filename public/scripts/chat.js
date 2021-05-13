@@ -1,8 +1,8 @@
 
 $(document).ready(function(){
     
-    //var socket = io('https://chatgrupal.herokuapp.com/');
-    var socket = io('http://localhost:3000/');
+    var socket = io('https://chatgrupal.herokuapp.com/');
+    //var socket = io('http://localhost:3000/');
     username(socket);
     updateUsers(socket);
     newMessage(socket);
@@ -10,6 +10,24 @@ $(document).ready(function(){
     username(socket);
     writeword(socket);
     verificaAncho();
+
+    
+    var contador = 1;
+    $('.btn_menu').click(function(){
+        if(contador == 1){
+            $('nav').animate({
+                left: '0'
+            });
+            contador = 0;
+        } else {
+            contador = 1;
+            $('nav').animate({
+                left: '-100%'
+            });
+        }
+
+    });
+
 });
 
 
@@ -28,8 +46,8 @@ function updateUsers(socket){
         
         for(var i = 0; i < data.users.length; i++){
             let html = '';
-            html += '<li class="list-group-item user">';
-            html += '<i class="me-2 fa fa-circle text-success"></i>'+data.users[i];+'</li>';
+            html += '<li class="user">';
+            html += '<i class="me-2 fa fa-circle text-success"></i><span>'+data.users[i];+'</span></li>';
             $('#users').append(html);      
         }
     })
@@ -118,8 +136,6 @@ function updateMessages(socket){
 
    
 }
-
-
 
 $(window).resize(function(){
   verificaAncho();
