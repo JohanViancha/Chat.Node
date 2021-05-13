@@ -1,11 +1,11 @@
 #container{
-    height: 80%;
     padding: 10px;
+    height: 80%;
 }
 
 /* Chat area */
 #chat-area{
-    height: 90%;
+    height: 94%;
 }
 
 #escribir{
@@ -25,6 +25,9 @@
     padding: 20px;
     overflow-y: scroll;
     max-height: 100%;
+}
+#message{
+    resize: none;
 }
 /*
 #user-list{
@@ -79,7 +82,7 @@
     }
 
     #container{
-        height: 97%;
+        height: 80%;
     }
 
   }

@@ -14,31 +14,42 @@ html(lang="es")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js")
         script(src="/scripts/bootstrap.min.js")
         script(src="/scripts/chat.js")
+        script     
+            - function newColor() {const hBase = Math.random();
+            - const newH = Math.floor(hBase * 360);
+            - const newL = Math.floor(Math.random() * 16) + 75;
+            - return `hsl(${newH}, 100%, ${newL}%)` 
+            - }
+
     body 
 
-
+        audio(id="audio" src="/audio/notificacion.mp3") 
+        audio(id="tipiear" src="/audio/tipiear.mp3") 
         nav.navbar.navbar-light.bg-light
            .container-fluid
-            img.d-inline-block.align-text-top(src="images/logo.png" width="40" height="40")
-            h2.text-dark Chat con Node.js y Socket.io
-            div.text-center
-                img.mx-3(src="images/node.png" width="80" height="40")
-                img(src="images/socketio.png" width="40" height="40")
+            #img.m-auto
+                img.mx-3.mb-2(src="images/node.png" width="80" height="40")
+                img.mx-3.mb-2(src="images/socketio.png" width="40" height="40")
+            h2.text-dark.m-auto Chat con Node.js y Socket.io
         #container
             #chat-area.row.m-0.container-fluid-md.border.rounded-3.p-3
                 #messages.container.col-sm-12.col-lg-8.border.rounded-3.p-2
                     #msg-list.full-width
+                        each item in mes
+                            - var color = newColor();
+                            .card.w-75.mb-2.your-msg 
+                                .card-header(style=`background: ${color}`) #{item.username}
+                                .card-body
+                                    p.card-text #{item.message}
                 #user-list.container.col-sm-12.col-lg-3.border.rounded-3.p-3
                     
                     .full-width.full-height
-                        h4 Usuarios en linea
                         #users.list-group
             
-            audio(id="audio" src="audio/notificacion.mp3")
             div#escribir    
                 span  
             form#send-msg-form
                 .input-group.mt-3
-                    textarea#message.form-control.lighter(name="message", placeholder="Escribe aquí tu mensaje")
-                    button#send-msg-btn.btn.btn-outline-primary
+                    textarea#message.form-control.lighter(required="true" name="message", placeholder="Escribe aquí tu mensaje")
+                    button#send-msg-btn.btn.btn-outline-primary(type="submit")
                         i.fas.fa-paper-plane

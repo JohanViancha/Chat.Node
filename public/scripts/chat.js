@@ -1,14 +1,18 @@
+
 $(document).ready(function(){
-  var socket = io('https://chatgrupal.herokuapp.com/');
-    //var socket = io('http://localhost:3000/');
+    
+    //var socket = io('https://chatgrupal.herokuapp.com/');
+    var socket = io('http://localhost:3000/');
     username(socket);
     updateUsers(socket);
     newMessage(socket);
     updateMessages(socket);
+    username(socket);
     writeword(socket);
-
     verificaAncho();
 });
+
+
 
 // obtenemos el nombre de usuario registrado en localStorage
 function username(socket){
@@ -60,7 +64,8 @@ function newMessage(socket){
             message: $('#message').val()
         });
          socket.emit('writeword', {usuario:localStorage.username,estado:2});
-        document.querySelector('#send-msg-form').reset();        
+        document.querySelector('#send-msg-form').reset(); 
+        $("#tipiear")[0].pause();        
         
     });
     
@@ -71,15 +76,14 @@ function newMessage(socket){
 
 function writeword(socket){ 
    
-
     socket.on('writeword', function(data){
 
         
         if(data.estado == 1){
             if(data.usuario != localStorage.username){
-                console.log(data.usuario + " escribio");
+                
                 $("#container #escribir").append(`<p class="p-write">${data.usuario} está escribiendo</p>`);
-                    
+                $("#tipiear")[0].play();    
             }
         }else  if(data.estado == 2){
             if(data.usuario != localStorage.username){
@@ -97,12 +101,12 @@ function updateMessages(socket){
     socket.on('updateMessages', function(data){
         let html = '';
         if(data.username == localStorage.username){
-            html += '<div class="card w-50 mb-2 my-msg">';
+            html += '<div class="card w-75 mb-2 my-msg">';
             html += '<div class="card-header" style="background:#00fff3"> Tú </div>';
             html += '<div class="card-body"><p class="card-text">' + data.message + '</p></div>';
             html += '</div>';
         }else{
-            html += '<div class="card w-50 mb-2 your-msg">';
+            html += '<div class="card w-75 mb-2 your-msg">';
             html += '<div class="card-header" style="background:'+data.color+'">' + data.username + ' </div>';
             html += '<div class="card-body"><p class="card-text">' + data.message + '</p></div>';
             html += '</div>';
@@ -116,6 +120,7 @@ function updateMessages(socket){
 }
 
 
+
 $(window).resize(function(){
   verificaAncho();
 });
@@ -127,8 +132,8 @@ function verificaAncho(){
     }
     if($(window).width()>900){
         $("#user-list").show();
-        $("#messages").removeClass("col-12");
-        $("#messages").addClass("col-8");
+       // $("#messages").removeClass("col-12");
+        //$("#messages").addClass("col-8");
 
     }
 }

@@ -1,5 +1,5 @@
 var users = require('./users');
-
+const Mensaje = require('./chatmodule');
 module.exports = function(io){
     io.on('connection', function(socket){
         addUser(socket);
@@ -9,12 +9,16 @@ module.exports = function(io){
     });
 }
 
+
 function addUser(socket){
-    socket.on('username', function(data){
-        socket.username = data.username;
-        users.push(data.username);
-        updateUsers(socket);
-    });
+
+       socket.on('username', function(data){
+            socket.username = data.username;
+            users.push(data.username);
+            updateUsers(socket);
+
+        }); 
+    
 }
 
 function updateUsers(socket){
@@ -31,10 +35,21 @@ function disconnectUser(socket){
     });
 }
 
+
+function saveMessage(data){
+    return new Promise((resolve,reject)=>{
+        const messagedb = new Mensaje({username: data.username, message:data.message});
+        resolve(messagedb.save());
+    })
+}
 function newMessage(socket){
     socket.on('newMessage', function(data){
-        socket.emit('updateMessages', data);
-        socket.broadcast.emit('updateMessages', data);
+        saveMessage(data)
+            .then(datamessage=>{
+                socket.emit('updateMessages', data);
+                socket.broadcast.emit('updateMessages', data);   
+            });
+        
     })
 }
 

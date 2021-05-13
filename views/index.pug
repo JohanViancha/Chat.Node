@@ -16,15 +16,9 @@ html(lang="es")
                 h1(class="center") Bienvenido!
                 p(class="center lighter") Ingresa tus datos, por favor:
                 input#username(class="full-width", type="text", name="username", placeholder="Tu usuario aquí...", required=true)
-                div
-                    input#male(type="radio", name="sex", value="Male", checked=true)
-                    label(class="lighter", for="male") Hombre
-                    input#female(type="radio", name="sex", value="Female")
-                    label(class="lighter", for="female") Mujer
-
                 if !validated
                     #registro-warning.titilando
                         i#warning-icon.fa.fa-warning
-                        small.lighter El usuario ingresado ya existe =(
+                        small.lighter El usuario ingresado ya existe, ingrese otro nombre
 
                 button#send-form Ingresar
