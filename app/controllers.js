@@ -13,6 +13,9 @@ function redirect(req, res){
         .then((mes)=>{
             res.render('chat',{mes});
         })
+        .catch((error)=>{
+            console.log(error);
+        })
     }  else{
         return res.render('index', {validated: false});
 
