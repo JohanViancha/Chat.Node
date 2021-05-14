@@ -1,8 +1,8 @@
 
 $(document).ready(function(){
     
-    var socket = io('https://chatgrupal.herokuapp.com/');
-    //var socket = io('http://localhost:3000/');
+    //var socket = io('https://chatgrupal.herokuapp.com/');
+    var socket = io('http://localhost:3000/');
     username(socket);
     updateUsers(socket);
     newMessage(socket);
