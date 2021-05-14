@@ -7,11 +7,12 @@ function index(req, res){
 
 
 function redirect(req, res){
+    console.log('Entro');
     if(req.validate) {
-        //    loadMensajes()
-        //.then((mes)=>{
-            res.render('chat');
-        //})
+            loadMensajes()
+        .then((mes)=>{
+            res.render('chat',{mes});
+        })
     }  else{
         return res.render('index', {validated: false});
 
