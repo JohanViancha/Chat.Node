@@ -10,7 +10,7 @@ function redirect(req, res){
     if(req.validate) {
         //    loadMensajes()
         //.then((mes)=>{
-            res.render('chat',{mes});
+            res.render('chat');
         //})
     }  else{
         return res.render('index', {validated: false});
