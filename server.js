@@ -32,7 +32,7 @@ const mongoose = require('mongoose');
 const user='johanviancha';
 const password = 'RgYaVf6U6VCIaj5M';
 const db = 'chat';
-const uri = `mongodb+srv://${user}:${password}@cluster0.vesuc.mongodb.net/${db}?retryWrites=true&w=majority`;
+const uri = `mongodb://${user}:${password}@cluster0-shard-00-00.vesuc.mongodb.net:27017,cluster0-shard-00-01.vesuc.mongodb.net:27017,cluster0-shard-00-02.vesuc.mongodb.net:27017/${db}?ssl=true&replicaSet=atlas-103m93-shard-0&authSource=admin&retryWrites=true&w=majority`;
 console.log(uri);
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(()=> console.log("Base de datos conectada"))
