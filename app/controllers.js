@@ -8,10 +8,10 @@ function index(req, res){
 
 function redirect(req, res){
     if(req.validate) {
-            loadMensajes()
-        .then((mes)=>{
+        //    loadMensajes()
+        //.then((mes)=>{
             res.render('chat',{mes});
-        })
+        //})
     }  else{
         return res.render('index', {validated: false});
 
