@@ -7,7 +7,6 @@ function index(req, res){
 
 
 function redirect(req, res){
-    console.log('Entro');
     if(req.validate) {
             loadMensajes()
         .then((mes)=>{

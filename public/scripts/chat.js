@@ -1,32 +1,16 @@
 
 $(document).ready(function(){
     
-    var socket = io('https://chatgrupal.herokuapp.com/');
-    //var socket = io('http://localhost:3000/');
+    //var socket = io('https://chatgrupal.herokuapp.com/');
+    var socket = io('http://localhost:3000/');
     username(socket);
     updateUsers(socket);
     newMessage(socket);
     updateMessages(socket);
-    username(socket);
     writeword(socket);
     verificaAncho();
 
-    
-    var contador = 1;
-    $('.btn_menu').click(function(){
-        if(contador == 1){
-            $('nav').animate({
-                left: '0'
-            });
-            contador = 0;
-        } else {
-            contador = 1;
-            $('nav').animate({
-                left: '-100%'
-            });
-        }
-
-    });
+    $("#messages").scrollTop($('#messages').prop("scrollHeight"));
 
 });
 
@@ -40,13 +24,11 @@ function username(socket){
 }
 
 function updateUsers(socket){
-    
     socket.on('updateUsers', function(data){
         $("#users").html('');
-        
         for(var i = 0; i < data.users.length; i++){
             let html = '';
-            html += '<li class="user">';
+            html += '<li class="user list-group-item">';
             html += '<i class="me-2 fa fa-circle text-success"></i><span>'+data.users[i];+'</span></li>';
             $('#users').append(html);      
         }
@@ -76,14 +58,17 @@ function newMessage(socket){
 
         // prevenimos evento por defecto que es enviar el formulario
         e.preventDefault();
-        socket.emit('newMessage', {
-            username: localStorage.username,
-            color: localStorage.color,
-            message: $('#message').val()
-        });
-         socket.emit('writeword', {usuario:localStorage.username,estado:2});
-        document.querySelector('#send-msg-form').reset(); 
-        $("#tipiear")[0].pause();        
+        if($('#message').val() != ""){
+            socket.emit('newMessage', {
+                username: localStorage.username,
+                color: localStorage.color,
+                message: $('#message').val()
+            });
+             socket.emit('writeword', {usuario:localStorage.username,estado:2});
+             document.querySelector('#send-msg-form').reset();       
+        }
+       
+         
         
     });
     
@@ -100,9 +85,7 @@ function writeword(socket){
         if(data.estado == 1){
             if(data.usuario != localStorage.username){
                 
-                $("#container #escribir").append(`<p class="p-write">${data.usuario} está escribiendo</p>`);
-                $("#tipiear")[0].play();    
-            }
+                $("#container #escribir").append(`<p class="p-write">${data.usuario} está escribiendo</p>`);            }
         }else  if(data.estado == 2){
             if(data.usuario != localStorage.username){
                 $("#container #escribir p").remove();

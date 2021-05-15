@@ -1,5 +1,5 @@
 var users = require('./users');
-const Mensaje = require('./chatmodule');
+var Mensaje = require('./chatmodule');
 module.exports = function(io){
     io.on('connection', function(socket){
         addUser(socket);
@@ -11,7 +11,6 @@ module.exports = function(io){
 
 
 function addUser(socket){
-
        socket.on('username', function(data){
             socket.username = data.username;
             users.push(data.username);
@@ -42,6 +41,8 @@ function saveMessage(data){
         resolve(messagedb.save());
     })
 }
+
+
 function newMessage(socket){
     socket.on('newMessage', function(data){
         saveMessage(data)

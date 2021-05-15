@@ -6,13 +6,16 @@ html(lang="es")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title My Chat App
         link(rel="shortcut icon" href="images/favicoin.ico")
+        link(rel="stylesheet", href="/css/bootstrap.min.css")
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
         link(rel="stylesheet", href="/css/main.css")
         link(rel="stylesheet", href="/css/index.css")
+        script(src="/scripts/bootstrap.min.js")
         script(src="/scripts/registro.js")
     body
         #welcome(class="full-height full width")
-            form#registro-form(action="./chat", method="POST")
+            form.text-center#registro-form(action="./chat", method="POST")
+                img.mb-3(src="images/chat-web.png" width="100px" height="100px")
                 h1(class="center") Bienvenido!
                 p(class="center lighter") Ingresa tus datos, por favor:
                 input#username(class="full-width", type="text", name="username", placeholder="Tu usuario aquí...", required=true)
@@ -21,4 +24,4 @@ html(lang="es")
                         i#warning-icon.fa.fa-warning
                         small.lighter El usuario ingresado ya existe, ingrese otro nombre
 
-                button#send-form Ingresar
+                button.m-auto.btn.btn-outline-success#send-form Ingresar

@@ -24,13 +24,9 @@ html(lang="es")
     body 
 
         audio(id="audio" src="/audio/notificacion.mp3") 
-        audio(id="tipiear" src="/audio/tipiear.mp3") 
         nav.navbar.navbar-light.bg-light.container-fluid
-            #img.m-auto
-                a.bt-menu(href="#")
-                    i.fas.fa-paper-plane 
-                img.mx-3.mb-2(src="images/node.png" width="80" height="40")
-                img.mx-3.mb-2(src="images/socketio.png" width="40" height="40")
+            img.mx-3.mb-2(src="images/node.png" width="80" height="40")
+            img.mx-3.mb-2(src="images/socketio.png" width="40" height="40")
             h2.text-dark.m-auto Chat con Node.js y Socket.io
         //header
               a.btn_menu(href="#")
@@ -50,6 +46,7 @@ html(lang="es")
                 #user-list.container.col-sm-12.col-lg-3.border.rounded-3.p-3
                     
                     .full-width.full-height
+                        h4.text-center.mb-2 Usuarios conectados
                         #users.list-group
             
             div#escribir    

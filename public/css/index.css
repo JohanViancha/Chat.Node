@@ -1,46 +1,50 @@
 /* Registro form */
+
+body{
+    background-color: #3c873a;
+}
 #welcome{
     align-items: center;
-    background-image: url('/images/background.jpg');
     background-size: cover;
     display: flex;
     justify-content: center;
 }
 #registro-form{
-    background: rgba(0, 0, 0, .50);
+    background:#FFF;
+    border-radius: 10px;
     padding: 30px;
-    width: 350px;
 }
 #registro-form > h1{
-    color: #fff;
+    color: #3c873a;
+    font-weight: 500;
 }
 #registro-form > p{
-    color: #fff;
+    color: #3c873a;
 }
 #username{
     background: transparent;
-    border: 1px solid #fff;
-    color: #fff;
+    border: 1px solid #ccc;
+    color: #3c873a;
     border-radius: 20px;
     font-size: 14px;
     margin: 20px 0px;
     padding: 10px;
 }
 #username::placeholder{
-    color: #fff;
+    color: #3c873a;
 }
-#send-form{
-    background: rgb(33, 95, 228);
+/*#send-form{
+    background: #3c873a;
     border-radius: 20px;
     color: #fff;
     display: block;
     padding: 10px 50px;
     margin: auto;
 }
-#send-form:hover{
-    background: rgb(71, 124, 238);
+/*#send-form:hover{
+    background: #FFF
     cursor: pointer;
-}
+}*/
 #registro-form > div{
     display: flex;
     justify-content: center;
