@@ -28,6 +28,8 @@ app.use('', Router);
 // configuramos el motor de vistas
 app.set('view engine', 'pug');
 
+
+//Conexión a base datos
 const mongoose = require('mongoose');
 const user='johanviancha';
 const password = 'RgYaVf6U6VCIaj5M';
@@ -37,7 +39,7 @@ const uri = `mongodb://${user}:${password}@cluster0-shard-00-00.vesuc.mongodb.ne
 
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(()=> console.log("Base de datos conectada"))
-    .catch(e=> console.log('Error al conectar'+ e));
+    .catch(e=> console.log('Error al conectar '+ e));
 
 
 require('./app/sockets')(io);
